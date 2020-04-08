@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle&display=swap');
+
+
+html{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+body{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.tab {
+    overflow: hidden;
+    border: none;
+    background-color: #dadada;
+  }
+
+  .header{
+    float: left;
+  }
+  
+  .tab button {
+    position: relative;
+    background-color: inherit;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 3vh;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.2s;
+  }
+
+  .tablinks{
+    float: right;
+  }
+  
+  .tab button:hover {
+    background-color: rgb(175, 175, 175);
+  }
+  
+  .tab button.active {
+    background-color: rgb(17, 17, 17);
+    color: white;
+  }
+  
+  .tabcontent {
+    font-family: 'News Cycle', sans-serif;
+    display: none;
+    padding-left: 5px;
+    border: 1px solid rgb(255, 255, 255);
+    border-top: none;
+    font-size: 3vh;
+  }
+
+  .tabcontent .user_form input,select,option{
+    font-size: 3vh;
+    display: block;
+    width: 22vh;
+    height: 6.5vh;
+    border-radius: 0.5em;
+    padding-left: 1em;
+    outline: none;
+    margin-top: 0.8em;
+    border: solid 1px black;
+  }
+
+  .tabcontent label{
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    height: 4.5vh;
+    border-radius: 0.5em;
+    outline: none;
+    margin-top: 0.4em;
+  }
+
+  .tabcontent input#btn{
+    background-color: rgb(175, 175, 175);
+    transition: 0.3s all ease-in-out;
+    font-size: 2.5vh;
+    border: none;
+    margin: 2vh 0 2vh 0;
+    padding: 0 0 0 0;
+    cursor: pointer;
+  }
+
+  .tabcontent input#btn:hover{
+    transition: 0.3s all ease-in-out;
+    background-color: rgb(100, 100, 100);
+    color: white;
+  }
+
+  .tabcontent .user_form{
+    position: relative;
+  }
+
+  .tabcontent .user_form select#drug{
+    position: relative;
+    width: 25vh;
+  }
+
+  footer{
+    font-family: 'News Cycle', sans-serif;
+    position: fixed;
+    top: 95%;
+    height: 5%;
+    width: 100%;
+    background-color: rgb(17, 17, 17);
+    margin: 0 0 0 0;
+    color: white;
+    padding: 0.5em 1em 1em 1em;
+    font-size: 1.5vh;
+  }
+
+  footer a{
+    color:white;
+  }
+
+  .result{
+    font-family: 'News Cycle',sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+  }

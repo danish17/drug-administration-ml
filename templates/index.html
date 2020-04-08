@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Level Predictor</title>
+    <link rel="stylesheet" href="../static/stylesheet.css">
+
+    <script>
+        function openTab(evt, TabName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+         // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(TabName).style.display = "block";
+        evt.currentTarget.className += " active";
+}
+    </script>
+</head>
+<body>
+    <!-- Tab links -->
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Levels')" id="level_btn">Using Levels</button>
+    <button class="tablinks" onclick="openTab(event, 'Dosage')" id="dose_btn">Using Dosage</button>
+    <button class="tablinks" onclick="openTab(event, 'About')">About</button>
+    <button class="header">Drug Adminstration using Machine Learning</button>
+  </div>
+  
+  <!-- Tab content -->
+  <div id="Levels" class="tabcontent">
+    <h3>Predicting required dosage using desired levels</h3>
+    <form class="user_form" action="{{ url_for('using_levels') }}" method="post">
+      <label for="drug">Drug</label>
+      <select name="drug" id="drug">
+        <option value="male">Phenytoin</option>
+      </select>
+      <label for="age">Age (years)</label>
+      <input type="number" name="age" class="field" min="1"></input>
+      <label for="sex">Gender</label>
+      <select name="sex">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <label for="level">Desired Level (&micro;g/ml)</label>
+      <input type="number" name="level" class="field" min="1"></input>
+      <input type="submit" name="predict" value="Predict" id="btn">
+    </form>
+  </div>
+  
+  <div id="Dosage" class="tabcontent">
+    <h3>Predicting resultant level using desired dosage</h3>
+    <form class="user_form" action="{{ url_for('using_dose') }}" method="post">
+      <label for="drug">Drug</label>
+      <select name="drug" id="drug">
+        <option value="male">Phenytoin</option>
+      </select>
+      <label for="age">Age (years)</label>
+      <input type="number" name="age" class="field" min="1"></input>
+      <label for="sex">Gender</label>
+      <select name="sex">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <label for="level">Desired Dosage (mg)</label>
+      <input type="number" name="dose" class="field" min="1"></input>
+      <input type="submit" name="predict" value="Predict" id="btn">
+    </form> 
+  </div>
+
+  <div id="About" class="tabcontent">
+    
+  </div>
+  <footer>
+    Developed by Danish Shakeel <a href="https://danishshakeel.me">(View Profile)</a> for the department of Clinical Pharmacology, SKIMS Srinagar Kashmir
+  </footer>
+</body>
+
+<style>
+  h1{
+    font-size: 2vh;
+    font-family: sans-serif;
+  }
+</style>
+</html>
