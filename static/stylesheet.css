@@ -120,8 +120,26 @@ body{
     color:white;
   }
 
+  footer h3#credits{
+    margin-top: 0;
+    font-size: 1.4vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  footer h3#cont{
+    margin-top: 0;
+    position: absolute;
+    font-size: 1.4vh;
+  }
+
   .result{
     font-family: 'News Cycle',sans-serif;
     font-size: 1.3em;
     font-weight: 600;
+  }
+
+  #About{
+    font-size: 2.5vh;
   }

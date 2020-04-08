@@ -4,7 +4,7 @@ import numpy as np
 
 def predict_dose(age,sex,level):
     try:
-        model = pickle.load(open("models/level_rf.sav", 'rb'))
+        model = pickle.load(open("models/rf_dose.sav", 'rb'))
     except:
         print("\nError while loading the model...\n")
 
@@ -22,7 +22,7 @@ def predict_dose(age,sex,level):
 
 def predict_level(age,sex,dose):
     try:
-        model = pickle.load(open("models/dose_rf.sav", 'rb'))
+        model = pickle.load(open("models/rf_level.sav", 'rb'))
     except:
         print("\nError while loading the model...\n")
 
