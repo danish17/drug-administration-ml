@@ -5,7 +5,6 @@ gunicorn
 itsdangerous
 Flask
 numpy
-language-check
 numpydoc
 pandas
 Werkzeug>=1.0.0
