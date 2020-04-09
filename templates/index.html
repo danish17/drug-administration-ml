@@ -3,114 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drug Level Predictor</title>
     <link rel="stylesheet" href="../static/stylesheet.css">
-
+    <link rel="stylesheet" href="../static/menu_stylesheet.css">
+    <title>Drug Administration ML</title>
+    <link rel="icon" href="../static/res/400x400.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
-        function openTab(evt, TabName) {
-        // Declare all variables
-        var i, tabcontent, tablinks;
-
-        // Get all elements with class="tabcontent" and hide them
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        }
-
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-         // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(TabName).style.display = "block";
-        evt.currentTarget.className += " active";
-}
+        $(document).ready(function(){
+		$('.navbar-fostrap').click(function(){
+			$('.nav-fostrap').toggleClass('visible');
+			$('body').toggleClass('cover-bg');
+		});
+	});
     </script>
-
     <script>
-      window.onload = function(){
-        elmnt = document.getElementById('About');
-        elmnt.style.display = "block";
-        } 
+            function openTab(evt, TabName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+    
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            }
+    
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+    
+             // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(TabName).style.display = "block";
+            evt.currentTarget.className += " active";
+    }
     </script>
 </head>
 <body>
-    <!-- Tab links -->
-<div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'Levels')" id="level_btn">Using Levels</button>
-    <button class="tablinks" onclick="openTab(event, 'Dosage')" id="dose_btn">Using Dosage</button>
-    <button class="tablinks" onclick="openTab(event, 'About')" id="about_btn">About</button>
-    <button class="header">Drug Adminstration using Machine Learning</button>
-  </div>
-  
-  <!-- Tab content -->
-  <div id="Levels" class="tabcontent">
-    <h3>Predicting required dosage using desired levels</h3>
-    <form class="user_form" action="{{ url_for('using_levels') }}" method="post">
-      <label for="drug">Drug</label>
-      <select name="drug" id="drug">
-        <option value="male">Phenytoin</option>
-      </select>
-      <label for="age">Age (years)</label>
-      <input type="number" name="age" class="field" min="1"></input>
-      <label for="sex">Gender</label>
-      <select name="sex">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <label for="level">Desired Level (&micro;g/ml)</label>
-      <input type="number" name="level" class="field" min="1"></input>
-      <input type="submit" name="predict" value="Predict" id="btn">
-    </form>
-  </div>
-  
-  <div id="Dosage" class="tabcontent">
-    <h3>Predicting resultant level using desired dosage</h3>
-    <form class="user_form" action="{{ url_for('using_dose') }}" method="post">
-      <label for="drug">Drug</label>
-      <select name="drug" id="drug">
-        <option value="male">Phenytoin</option>
-      </select>
-      <label for="age">Age (years)</label>
-      <input type="number" name="age" class="field" min="1"></input>
-      <label for="sex">Gender</label>
-      <select name="sex">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <label for="level">Desired Dosage (mg)</label>
-      <input type="number" name="dose" class="field" min="1"></input>
-      <input type="submit" name="predict" value="Predict" id="btn">
-    </form> 
+    
+<div id="main">
+    <div class="container">
+      </div>
+      <nav>
+        <div class="nav-fostrap">
+        <a href="" class="title-desktop">Drug Administration ML</a>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="javascript:void(0)">About<span class="arrow-down"></span></a>
+              <ul class="dropdown">
+                <li><a href="about">About the Concept</a></li>
+                <li><a href="https://danishshakeel.me" target="_blank">About the Developer</a></li>
+              </ul>
+            </li>
+            <li><a href="javascript:void(0)">Feedback<span class="arrow-down"></span></a>
+                <ul class="dropdown">
+                  <li><a href="https://forms.gle/8Xb9KGrHDKEhag429" target="_blank">Suggestions</a></li>
+                  <li><a href="https://forms.gle/PEMsSvfKgFoupFSR6" target="_blank">Report a bug</a></li>
+                </ul>
+            </li>
+            <li><a href="https://github.com/danish17/drug-administration-ml" target="_blank">Contribute</a></li>
+        </ul>
+        </div>
+        <div class="nav-bg-fostrap">
+          <div class="navbar-fostrap"> <span></span> <span></span> <span></span> </div>
+          <a href="" class="title-mobile">Drug Administration ML</a>
+        </div>
+      </nav>
+      <div class='content'>
+      </div>
   </div>
 
-  <div id="About" class="tabcontent">
-    Patients don’t respond in similar ways when the same drug is given in a standard dose. Several
-  factors can alter blood drug concentrations. Therapeutic Drug Monitoring (TDM) is used for
-  monitoring the drugs with narrow therapeutic index and marked pharmacokinetic variability.
-  Therapeutic ranges used in TDM are mere recommendations based on the clinical response of a
-  small group of patients taking the drug. Most drugs are usually assigned a single therapeutic
-  range for all indications, at all ages, and regardless of co-medication and co-morbidities. 
-  Therapeutic reference ranges should be population and indication specific. <br>
-  A recent Indian genome variation consortium (IGVC) study of genetic markers in 55 diverse
-  Indian populations revealed high heterogeneity among the Dravidian populations and showed
-  dissimilarity with HapMap populations. It has been observed that 20.56% North Indian
-  population are poor drug metabolizers for the category of drugs metabolized by CYP2B6. <br>
-  CYP2C9* 3 has been found the most frequent mutant allele in healthy controls and idiopathic
-  epilepsy patients of ethnic Kashmiri population.Due to these genetic variations, the references
-  ranges of drugs used in TDM, established elsewhere may not be fit for our population. <br>
-  To assist the pharmacologists to overcome the complex issues of local population based
-  therapeutic ranges and prediction of a drug dose to achieve a specific blood level or vice-versa, this
-  webapp has been developed, especially for the Department of Clinical
-  Pharmacology, SKIMS, Kashmir. Any one is free to use it, and contribute to it, since it is open-source. This is the alpha version of the
-  model. <br>
-  If you wish to add a specific drug, and have the dataset for it, please contact hi@danishshakeel.me.
-  </div>
-  <footer>
+<div id="user_card">
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Levels')" id="level_btn">Using Levels</button>
+        <button class="tablinks" onclick="openTab(event, 'Dosage')" id="dose_btn">Using Dosage</button>
+      </div>
+      
+      <!-- Tab content -->
+      <div id="Levels" class="tabcontent">
+        <h3>Predicting required dosage using desired levels</h3>
+        <hr>
+        <form class="user_form" action="{{ url_for('using_levels') }}" method="post">
+            <div class="field">
+                <label for="drug">Drug/Dataset</label>
+                <select name="drug" id="drug">
+                    <option value="phenytoin">Phenytoin</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="age">Age (years)</label>
+                <input type="number" name="age" class="field" min="1" max="120" placeholder="Patient's age"></input>
+            </div>
+            <div class="field">
+                <label for="sex">Gender</label>
+                <select name="sex">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="level">Desired Level (&micro;g/ml)</label>
+                <input type="number" name="level" class="field" min="1" max="30" placeholder="Normal level is 10 &micro;g/ml-20&micro;g/ml"></input>
+            </div>
+            <div class="field">
+                <label for="level">Comorbidities?</label>
+                <input type="checkbox" name="comorb" value="yes">
+            </div>
+            <div class="field">
+                <input type="submit" name="predict" value="Predict" id="btn">
+            </div>
+        </form>
+      </div>
+      
+      <div id="Dosage" class="tabcontent">
+        <h3>Predicting resultant level using desired dosage</h3>
+        <hr>
+        <form class="user_form" action="{{ url_for('using_dose') }}" method="post">
+            <div class="field">
+                <label for="drug">Drug/Dataset</label>
+                <select name="drug" id="drug">
+                    <option value="phenytoin">Phenytoin</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="age">Age (years)</label>
+                <input type="number" name="age" class="field" min="1" max="120" placeholder="Patient's age"></input>
+            </div>
+            <div class="field">
+                <label for="sex">Gender</label>
+                <select name="sex">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="level">Desired Daily Dosage (mg)</label>
+                <input type="number" name="dose" class="field" min="1" max="500" placeholder="Usually between 100 and 400"></input>
+            </div>
+            <div class="field">
+                <label for="level">Comorbidities?</label>
+                <input type="checkbox" name="comorb" value="yes">
+            </div>
+            <div class="field">
+                <input type="submit" name="predict" value="Predict" id="btn">
+            </div>
+        </form>
+      </div>
+</div>
+
+<div id="result">   
+        <h2>{{ message }}</h2>
+</div>
+
+<footer>
     <h3 id="credits">Developed by Danish Shakeel <a href="https://danishshakeel.me" target="_blank">(View Profile)</a></h3>    
-    <h3 id="cont"><a href="https://github.com/danish17/drug-administration-ml" target="_blank">Contribute (Github)</a></h3>
   </footer>
+
 </body>
 </html>
