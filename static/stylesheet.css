@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
 #user_card{
+    top: 10px;
     position: relative;
     left:50%;
     transform: translateX(-50%);
@@ -56,7 +57,7 @@
   .tabcontent {
     display: none;
     padding-left: 5px;
-    border: 1px solid rgb(255, 255, 255);
+    border: none;
     border-top: none;
     font-size: 2.5vh;
   }
@@ -155,16 +156,48 @@ footer a{
 
 @media only screen and (max-width:900px) {
     #user_card{
+        top: 0;
         position: relative;
         left:50%;
         transform: translateX(-50%);
         background-color: #e0e0e0;
         width: 90%;
-        height: 500px;
+        height: 480px;
         margin-top: 0;
         border-radius: 10px;
     }
 
+    .tabcontent{
+      border: none;
+    }
+
+    .tabcontent h3{
+      font-size: 13px;
+    }
+
+    .field label{
+      font-size: 12px;
+    }
+
+    .field input[type="submit"]{
+      padding: 0 0 0 0;
+    }
+
+    .field select{
+      width: 60%;
+    }
+
+    .field input{
+      width: 60% !important;
+    }
+
+    .field{
+      margin-bottom: 10px;
+    }
+
+    .field input#btn{
+      margin: 0 0 0 0;
+    }
 
     #result{
         position: fixed;
