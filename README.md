@@ -1,3 +1,6 @@
+# Drug Administration Using Machine Learning 
+<img src="https://img.freepik.com/free-photo/elevated-view-pills-blue-background_23-2147867081.jpg?size=626&ext=jpg"> 
+
 Patients don’t respond in similar ways when the same drug is given in a standard dose. Several
 factors can alter blood drug concentrations. Therapeutic Drug Monitoring (TDM) is used for
 monitoring the drugs with narrow therapeutic index and marked pharmacokinetic variability.
