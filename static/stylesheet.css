@@ -154,7 +154,7 @@ footer a{
   color: white;
 }
 
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:1200px) {
     #user_card{
         top: 0;
         position: relative;
