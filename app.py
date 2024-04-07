@@ -1,61 +1,59 @@
-from flask import Flask,render_template,request
-from src import predict
+from flask import Flask, request, jsonify, abort
+import pickle
+import numpy as np
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 
+API_KEY = os.getenv('API_KEY')
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+def check_api_key(request):
+    """Check for a valid API key in the request headers."""
+    api_key = request.headers.get('X-API-KEY')
+    return api_key == API_KEY
 
+def predict_dose(age, sex, level):
+    try:
+        model = pickle.load(open("models/rf_dose.sav", 'rb'))
+        vars = np.array([age, sex, level]).reshape(1, -1)
+        calc = model.predict(vars)
+        return round(calc[0])
+    except Exception as e:
+        return str(e)
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+def predict_level(age, sex, dose):
+    try:
+        model = pickle.load(open("models/rf_level.sav", 'rb'))
+        vars = np.array([age, sex, dose]).reshape(1, -1)
+        calc = model.predict(vars)
+        return round(calc[0])
+    except Exception as e:
+        return str(e)
 
-@app.route('/using_levels', methods=['POST'])
-def using_levels():
-    age = request.form.get('age')
-    sex = request.form.get('sex')
-    level = request.form.get('level')
-    comorb = request.form.get('comorb')
+@app.route('/predict_dose', methods=['POST'])
+def api_predict_dose():
+    if not check_api_key(request):
+        abort(401)  # Unauthorized access
+    data = request.get_json()
+    age = data['age']
+    sex = data['sex']
+    level = data['level']
+    result = predict_dose(age, sex, level)
+    return jsonify({'rounded_dose': result})
 
-    sex = 0 if sex.casefold() == "female" else 1
-
-    dose = predict.predict_dose(age,int(sex),level)
-    dose_class = predict.is_close(dose)
-
-    if (comorb == 'yes' or int(age) >= 60):
-        approp = dose_class[0]
-    else:
-        approp = dose_class[1]
-
-    print(dose_class)
-    print(approp)
-
-    if (comorb == 'yes' or int(age) >= 60):
-        message = f'''The predicted dose to achieve a level of {level} microgram/ml is {round(dose)} mg. The dose class is {dose_class}mg. Since, the patient has comorbidities or is older than 60 years, the suggested dose is {approp}mg'''
-    else:
-        message = f'''The predicted dose to achieve a level of {level} microgram/ml is {round(dose)} mg. The dose class is {dose_class}mg. 
-        Since, the patient does not have comorbidities, the suggested dose is {approp}mg'''
-
-    return render_template('index.html',
-                           message = message)
-
-@app.route('/using_dose',methods=['POST'])
-def using_dose():
-    age = request.form.get('age')
-    sex = request.form.get('sex')
-    dose = request.form.get('dose')
-
-    sex = 0 if sex.casefold() == "female" else 1
-
-    level = predict.predict_level(age,int(sex),dose)
-
-    message = "The predicted level using a dose of {} mg is {} microgram/ml".format(dose, level)
-
-    return render_template('index.html',
-                           message = message)
+@app.route('/predict_level', methods=['POST'])
+def api_predict_level():
+    if not check_api_key(request):
+        abort(401)  # Unauthorized access
+    data = request.get_json()
+    age = data['age']
+    sex = data['sex']
+    dose = data['dose']
+    result = predict_level(age, sex, dose)
+    return jsonify({'rounded_level': result})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
