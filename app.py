@@ -56,4 +56,4 @@ def api_predict_level():
     return jsonify({'rounded_level': result})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
